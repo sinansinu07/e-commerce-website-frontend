@@ -9,7 +9,7 @@ import LoginForm from "./components/Login/Login.component";
 import RegisterForm from './components/Register/Register.component';
 import NavBar from './components/NavBar/NavBar.component';
 import CustomerContainer from './components/CustomerContainer/CustomerContainer.component';
-import { localhost } from './apis/api';
+import { render } from './apis/api';
 import axios from 'axios';
 import { useAuth } from './context/AuthContext';
 import UnAuthorized from './general/UnAuthorized';
@@ -25,7 +25,7 @@ export default function App() {
     useEffect(() => {
         if(localStorage.getItem("token")) {
             (async () => {
-                const response = await axios.get(`${localhost}/api/user/account`, {
+                const response = await axios.get(`${render}/api/user/account`, {
                     headers : {
                         "Authorization" : localStorage.getItem("token")
                     }

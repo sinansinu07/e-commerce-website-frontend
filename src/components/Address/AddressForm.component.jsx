@@ -32,7 +32,7 @@ export default function AddressForm({ toggle, editId }) {
     };
 
     return (
-        <div className={styles.container}>
+        <div>
             <form className={styles.form} onSubmit={handleSubmit}>
                 <div className={styles.formGroup}>
                     <label htmlFor="name">Name</label>

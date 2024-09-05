@@ -3,7 +3,7 @@ import { useAuth } from "../../context/AuthContext";
 import NavBar from "../NavBar/NavBar.component";
 import Product from "../Product/Product.component";
 import axios from "axios";
-import { localhost } from "../../apis/api";
+import { render } from "../../apis/api";
 import { useEffect } from "react";
 import { startCreateOrder } from "../../actions/orderAction";
 
@@ -23,7 +23,7 @@ export default function CustomerContainer() {
             try{
                 const stripeId = localStorage.getItem('stripeId')
                 if(stripeId) {
-                    const response = await axios.put(`${localhost}/api/user/payments/${stripeId}/success`,{paymentStatus:"Successful"}, {
+                    const response = await axios.put(`${render}/api/user/payments/${stripeId}/success`,{paymentStatus:"Successful"}, {
                         headers:{
                             'Authorization' : localStorage.getItem('token')
                         }

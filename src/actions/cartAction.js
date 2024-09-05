@@ -1,11 +1,11 @@
 import axios from 'axios'
-import { localhost } from "../apis/api"
+import { render } from "../apis/api"
 
 
 export const startCreateCart=(cart)=>{
     return async(dispatch)=>{
         try{
-            const response = await axios.post(`${localhost}/api/user/cart/`, cart, {
+            const response = await axios.post(`${render}/api/user/cart/`, cart, {
                 headers:{
                     'Authorization' : localStorage.getItem('token')
                 }
@@ -28,7 +28,7 @@ const createCart =(cartItems)=>{
 export const startGetMyCart = ()=>{
     return async(dispatch)=>{
         try{
-            const response = await axios.get(`${localhost}/api/user/cart/`,{
+            const response = await axios.get(`${render}/api/user/cart/`,{
                 headers:{
                     "Authorization" : localStorage.getItem('token')
                 }
@@ -51,7 +51,7 @@ export const startDeleteMyCartLineItem = (id) => {
     return async(dispatch) => {
         try {
             // console.log("hii 2")
-            const response = await axios.delete(`${localhost}/api/user/cart/${id}`, {
+            const response = await axios.delete(`${render}/api/user/cart/${id}`, {
                 headers : {
                     "Authorization" : localStorage.getItem('token')
                 }
@@ -78,7 +78,7 @@ const deleteMyCartLineItem = (lineItem) => {
 export const startIncQty = (id) => {
     return async(dispatch) => {
         try {
-            const response = await axios.put(`${localhost}/api/user/cart/inc/${id}`, {}, {
+            const response = await axios.put(`${render}/api/user/cart/inc/${id}`, {}, {
                 headers : {
                     "Authorization" : localStorage.getItem('token')
                 }
@@ -105,7 +105,7 @@ const incQty = (lineItem) => {
 export const startDecQty = (id) => {
     return async(dispatch) => {
         try {
-            const response = await axios.put(`${localhost}/api/user/cart/dec/${id}`, {}, {
+            const response = await axios.put(`${render}/api/user/cart/dec/${id}`, {}, {
                 headers : {
                     "Authorization" : localStorage.getItem('token')
                 }
@@ -134,7 +134,7 @@ const decQty = (lineItem) => {
 export const startEmptyCart = () => {
     return async(dispatch) => {
         try {
-            const response = await axios.delete(`${localhost}/api/user/cart`, {
+            const response = await axios.delete(`${render}/api/user/cart`, {
                 headers : {
                     "Authorization" : localStorage.getItem('token')
                 }

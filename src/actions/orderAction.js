@@ -1,10 +1,10 @@
 import axios from "axios"
-import { localhost } from "../apis/api"
+import { render } from "../apis/api"
 
 export const startGetMyOrders = () => {
     return async (dispatch) => {
         try {
-            const response = await axios.get(`${localhost}/api/user/orders/myOrders`, {
+            const response = await axios.get(`${render}/api/user/orders/myOrders`, {
                 headers: {
                     "Authorization": localStorage.getItem("token")
                 }
@@ -33,7 +33,7 @@ export const startCreateOrder = (paymentId) => {
                 return;
             }
             dispatch({ type: "CREATE_ORDER_REQUEST" });
-            const orderResponse = await axios.post(`${localhost}/api/user/orders/${paymentId}`, {}, {
+            const orderResponse = await axios.post(`${render}/api/user/orders/${paymentId}`, {}, {
                 headers: {
                     'Authorization': localStorage.getItem('token')
                 }
@@ -60,7 +60,7 @@ const addOrder = (order) => {
 export const startCancelOrder = (id) => {
     return async (dispatch) => {
         try {
-            const orderResponse = await axios.put(`${localhost}/api/user/orders/${id}`, { status : "Canceled"}, {
+            const orderResponse = await axios.put(`${render}/api/user/orders/${id}`, { status : "Canceled"}, {
                 headers:{
                     'Authorization' : localStorage.getItem('token')
                 }

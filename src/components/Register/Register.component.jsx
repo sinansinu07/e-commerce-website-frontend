@@ -9,7 +9,7 @@ import { MdMail, MdVisibility, MdVisibilityOff } from "react-icons/md";
 import PhoneInput from "react-phone-input-2"
 import 'react-phone-input-2/lib/style.css'
 
-import { localhost } from "../../apis/api"
+import { render } from "../../apis/api"
 
 import styles from "./Register.module.css"
 
@@ -97,7 +97,7 @@ export default function RegisterForm() {
 
         if(Object.keys(errors).length === 0) {
             try {
-                const response = await axios.post(`${localhost}/api/user/register`, formData)
+                const response = await axios.post(`${render}/api/user/register`, formData)
                 console.log(response.data)
                 alert("Successfully Registered!")
                 setForm({
