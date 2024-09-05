@@ -5,7 +5,7 @@ import NavBar from '../NavBar/NavBar.component';
 import { startDecQty, startDeleteMyCartLineItem, startEmptyCart, startGetMyCart, startIncQty } from '../../actions/cartAction';
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import axios from 'axios';
-import { localhost } from '../../apis/api';
+import { render } from '../../apis/api';
 import { Link } from 'react-router-dom';
 import SideBar from '../SideBar/SideBar.component';
 
@@ -22,7 +22,7 @@ export default function Cart() {
             try {
                 const stripeId = localStorage.getItem('stripeId');
                 if (stripeId) {
-                    await axios.put(`${localhost}/api/user/payments/${stripeId}/failed`, { paymentStatus: "Failed" }, {
+                    await axios.put(`${render}/api/user/payments/${stripeId}/failed`, { paymentStatus: "Failed" }, {
                         headers: { 'Authorization': localStorage.getItem('token') }
                     });
                     alert("Payment Failed");
@@ -53,7 +53,7 @@ export default function Cart() {
     const handlePayment = async () => {
         try {
             if (cart) {
-                const response = await axios.post(`${localhost}/api/user/payments/`, {}, {
+                const response = await axios.post(`${render}/api/user/payments/`, {}, {
                     headers: { 'Authorization': localStorage.getItem('token') }
                 });
                 localStorage.setItem('stripeId', response.data.id);
