@@ -1,0 +1,17 @@
+.account-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    width: 50%;
+  }
+  
+  .card-body {
+    text-align: center;
+  }

@@ -1,0 +1,44 @@
+.container {
+  display: grid;
+  grid-template-columns: 250px 1fr; /* Sidebar takes 250px, the rest is for content */
+  grid-template-rows: auto 1fr; /* Navbar on top, rest for content */
+  height: 100vh; /* Full height */
+}
+
+.navbar {
+  grid-column: 1 / -1; /* Navbar spans across both columns */
+}
+
+.sidebar {
+  grid-row: 2 / -1; /* Sidebar spans from row 2 to the bottom */
+}
+
+.product-grid {
+  grid-area: product-grid;
+  padding: 20px;
+  margin-top: 100px; /* Space between Navbar and Product grid */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .container {
+    grid-template-columns: 1fr; /* Sidebar moves on top */
+  }
+
+  .sidebar {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

@@ -1,0 +1,26 @@
+.nav-bar {
+  background: #ad974f;
+  justify-content: space-between;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.nav-items {
+  font-size: 1.2rem;
+  color: #eaeaea;
+  margin-right: 15px;
+}
+
+.logout-icon, .logout-text {
+  color: #ad974f;
+}
+
+.button {
+  background: #ad974f;
+  padding: 10px;
+  border-radius: 40px;
+  cursor: pointer;
+}

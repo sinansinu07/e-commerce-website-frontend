@@ -1,0 +1,155 @@
+import axios from 'axios'
+import { localhost } from "../apis/api"
+
+
+export const startCreateCart=(cart)=>{
+    return async(dispatch)=>{
+        try{
+            const response = await axios.post(`${localhost}/api/user/cart/`, cart, {
+                headers:{
+                    'Authorization' : localStorage.getItem('token')
+                }
+            })
+            console.log(response.data)
+            dispatch(createCart(response.data))
+            alert('Item added to cart')
+        }catch(err){
+            console.log(err)
+        }
+    }
+}
+const createCart =(cartItems)=>{
+    return{
+        type: 'CREATE_CART',
+        payload: cartItems
+    }
+}
+
+export const startGetMyCart = ()=>{
+    return async(dispatch)=>{
+        try{
+            const response = await axios.get(`${localhost}/api/user/cart/`,{
+                headers:{
+                    "Authorization" : localStorage.getItem('token')
+                }
+            })
+            // console.log(response.data)
+            dispatch(getMyCart(response.data))
+        }catch(err){
+            console.log(err)
+        }
+    }
+}
+const getMyCart = (myCart)=>{
+    return{
+        type:"GET_CART",
+        payload:myCart
+    }
+}
+
+export const startDeleteMyCartLineItem = (id) => {
+    return async(dispatch) => {
+        try {
+            // console.log("hii 2")
+            const response = await axios.delete(`${localhost}/api/user/cart/${id}`, {
+                headers : {
+                    "Authorization" : localStorage.getItem('token')
+                }
+            })
+            const lineItem= response.data.lineItems.find((ele)=>{
+                return ele._id === id
+            })
+            dispatch(deleteMyCartLineItem(response.data))
+            // window.location.reload()
+            console.log(id, response.data)
+        } catch(err) {
+            console.log(err)
+        }
+    }
+}
+
+const deleteMyCartLineItem = (lineItem) => {
+    return {
+        type : "DELETE_LINEITEM",
+        payload : lineItem
+    }
+}
+
+export const startIncQty = (id) => {
+    return async(dispatch) => {
+        try {
+            const response = await axios.put(`${localhost}/api/user/cart/inc/${id}`, {}, {
+                headers : {
+                    "Authorization" : localStorage.getItem('token')
+                }
+            })
+            const lineItem= response.data.lineItems.find((ele)=>{
+                return ele.product._id === id
+            })
+            // console.log(lineItem)
+            dispatch(incQty(lineItem))
+            // console.log(id, response.data)
+        } catch(err) {
+            console.log(err)
+        }
+    }
+}
+
+const incQty = (lineItem) => {
+    return {
+        type : "INC_QTY",
+        payload : lineItem
+    }
+}
+
+export const startDecQty = (id) => {
+    return async(dispatch) => {
+        try {
+            const response = await axios.put(`${localhost}/api/user/cart/dec/${id}`, {}, {
+                headers : {
+                    "Authorization" : localStorage.getItem('token')
+                }
+            })
+            // console.log(response.data)
+            const lineItem= response.data.lineItems.find((ele)=>{
+                return ele.product._id === id
+            })
+            
+            dispatch(decQty(lineItem))
+            console.log(id, lineItem)
+            // window.location.reload()
+        } catch(err) {
+            console.log(err)
+        }
+    }
+}
+
+const decQty = (lineItem) => {
+    return {
+        type : "DEC_QTY",
+        payload : lineItem
+    }
+}
+
+export const startEmptyCart = () => {
+    return async(dispatch) => {
+        try {
+            const response = await axios.delete(`${localhost}/api/user/cart`, {
+                headers : {
+                    "Authorization" : localStorage.getItem('token')
+                }
+            })
+            console.log(response.data)
+            dispatch(emptyCart(response.data))
+        } catch(err) {
+            console.log(err)
+        }
+    }
+}
+
+const emptyCart = (cart) => {
+    return {
+        type : "EMPTY_CART",
+        payload : cart
+    }
+}

@@ -1,0 +1,75 @@
+.sidebar {
+    height: 100vh; /* Full height */
+    width: 250px; /* Fixed width */
+    background-color: #ad974f; /* Matches the NavBar */
+    position: fixed;
+    top: 60px; /* Ensures it's below the NavBar */
+    left: 0;
+    transition: width 0.3s ease-in-out;
+  }
+  
+  /* Adjustments for screens below 768px */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 100px; /* Narrower on smaller screens */
+    }
+  
+    .menuBar {
+      font-size: 0.8rem;
+    }
+  
+    .menuItem, .submenuItem {
+      font-size: 0.9rem;
+      padding: 0.5rem; /* Less padding for smaller viewports */
+    }
+  }
+  
+  /* Adjustments for screens below 480px (mobile) */
+  @media (max-width: 480px) {
+    .sidebar {
+      width: 80px; /* Even narrower on mobile */
+    }
+  
+    .menuBar {
+      font-size: 0.7rem;
+    }
+  
+    .menuItem, .submenuItem {
+      font-size: 0.8rem;
+      padding: 0.3rem;
+    }
+  
+    .subMenu {
+      display: none; /* Submenu hidden on smaller screens */
+    }
+  }
+  
+  /* Default styles for sidebar content */
+  .menuBar {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
+  
+  .subMenu {
+    color: #fff;
+  }
+  
+  .submenuItem {
+    color: #333;
+    margin: 0.5rem 0;
+  }
+  
+  .menuItem {
+    color: #fff;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    background-color: #ad974f;
+    border-radius: 5px;
+    text-align: left;
+  }
+  
+  .menuItem:hover, .submenuItem:hover {
+    background-color: #9b8654;
+  }
+  
