@@ -36,7 +36,9 @@ export default function App() {
     }, [])
 
     useEffect(() => {
-        dispatch(startGetProducts())
+        if(localStorage.getItem("token")){
+            dispatch(startGetProducts())
+        }
     }, [dispatch])
     return (
         <div className="App">
