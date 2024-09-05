@@ -1,5 +1,5 @@
 import axios from "axios";
-import { localhost, render } from "../apis/api";
+import {render, localhost} from "../apis/api"
 
 
 export const startGetAddresses = () => {

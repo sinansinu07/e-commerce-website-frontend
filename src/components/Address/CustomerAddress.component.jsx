@@ -85,7 +85,7 @@ export default function CustomerAddresses() {
                 </ModalBody>
             </Modal>
             <Modal isOpen={modal2} toggle={toggle2}>
-                <ModalHeader toggle={toggle2}>Edit Address - {user.username}</ModalHeader>
+                <ModalHeader toggle={toggle2}>Edit Address - {user?.username}</ModalHeader>
                 <ModalBody>
                     <AddressForm toggle={toggle2} editId={editId} />
                 </ModalBody>
