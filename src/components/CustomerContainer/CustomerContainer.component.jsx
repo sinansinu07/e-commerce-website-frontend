@@ -7,7 +7,7 @@ import { render } from "../../apis/api";
 import { useEffect } from "react";
 import { startCreateOrder } from "../../actions/orderAction";
 
-import styles from "./customerContainer.module.css"
+import styles from "./CustomerContainer.module.css"
 import SideBar from "../SideBar/SideBar.component";
 // import { startGetProducts } from "../../actions/productAction";
 
