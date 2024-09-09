@@ -1,17 +1,53 @@
-.container {
-    padding: 20px;
-    margin-top: 100px;
-}
+/* Container for the entire page */
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+  }
+  
+  /* NavBar at the top */
+  .navBar {
+    width: 100%;
+    height: 50px; /* Adjust height as needed */
+    background-color: #bbab86; /* Matches your design */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+  
+  /* Main content container, holding sidebar and product grid */
+  .mainContainer {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    padding-top: 50px; /* Ensure content is below the fixed NavBar */
+  }
+  
+  /* Sidebar styles */
+  .leftSideContainer {
+    width: 200px; /* Matches the width of your sidebar */
+    position: relative;
+    flex-shrink: 0;
+  }
+  
+  /* Add space between the sidebar and the product grid */
+  .rightSideContainer {
+    flex-grow: 1;
+    padding: 20px 20px 20px 30px; /* Add space on the left between the sidebar and products */
+    overflow-y: auto;
+    margin-left: 50px;
+  }
 
 .content {
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 h2 {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .noAddress, .addressGrid {

@@ -11,11 +11,14 @@ import { useAuth } from "../../context/AuthContext";
 import {render} from "../../apis/api"
 
 import styles from "./Login.module.css"
+import NavBar from "../NavBar/NavBar.component";
 
 export default function LoginForm() {
 
     const { handleLogin } = useAuth()
     const navigate = useNavigate()
+
+    const [loading, setLoading] = useState()
     const [form, setForm] = useState({
         username : "",
         password : ""
@@ -23,7 +26,7 @@ export default function LoginForm() {
     const [isVisible, setISVisible] = useState(false)
 
     const [formErrors, setFormErrors] = useState("")
-    // const [serverErrors, setServerErrors] = useState("")
+    const [serverErrors, setServerErrors] = useState("")
 
     const errors = {}
 
@@ -44,6 +47,7 @@ export default function LoginForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setLoading(true)
 
         const formData = {
             username : form.username,
@@ -56,38 +60,36 @@ export default function LoginForm() {
                 const token = response.data.token
                 const user = response.data.user
                 localStorage.setItem("token", token)
-                console.log(response.data)
+                // console.log(response.data)
                 handleLogin(user)
                 alert("Successfully Logged In")
                 setFormErrors("")
-                // setServerErrors("")
+                setServerErrors("")
                 navigate("/customer-container")
             } catch(err) {
                 // alert(err.message)
-                // console.log(err)
-                // if(err.response.data.errors) {
-                //     setServerErrors(err.response.data.errors)
-                // } else {
-                //     setServerErrors(err.response.data)
-                // }
-                // console.log(serverErrors)
+                setServerErrors(err.response.data.error)
+                // console.log(err.response.data.error)
+                
                 setFormErrors("")
             }
         } else {
             setFormErrors(errors)
-            // setServerErrors("")
+            setLoading(false)
+            setServerErrors("")
         }
     }
     // console.log(formErrors)
 
     return (
         <div>
+            <NavBar/>
             <div className={styles["wrapper"]}>
                 <form onSubmit={handleSubmit}>
                     <h1 className={styles["h1"]}>Login</h1>
-                    {/* {serverErrors.error && (
-                        <Alert color="danger">{serverErrors && serverErrors.error} </Alert>
-                    )} */}
+                    {serverErrors && (
+                        <Alert color="danger">{serverErrors} </Alert>
+                    )}
                     <div className={styles["input-box"]}>
                         <input 
                             className={styles["username-input"]}
@@ -118,7 +120,10 @@ export default function LoginForm() {
                     </div>
                     {/* {serverErrors[0] && <Alert color="danger">{serverErrors.findErrors("password")}</Alert>} */}
                     {formErrors.password && <Alert color="danger">{formErrors.password}</Alert>}
-                    <input className={styles["input-button"]} type="submit" value="Login" />
+                    <input 
+                        className={styles["input-button"]}
+                        type="submit"
+                        value={loading ? "Logging In..." : "Login"} />
                     <div className={styles["register-link"]}>
                         <label>Don't have an account?</label>
                         <Link to="/register" style={{ color: '#231f20' }}><p>Register</p></Link>

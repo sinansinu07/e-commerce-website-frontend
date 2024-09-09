@@ -1,5 +1,6 @@
 import axios from "axios"
 import { render } from "../apis/api"
+import { startCreateCoupon } from "./couponAction"
 
 export const startGetMyOrders = () => {
     return async (dispatch) => {
@@ -42,6 +43,7 @@ export const startCreateOrder = (paymentId) => {
             dispatch(addOrder(order));
             dispatch({ type: "CREATE_ORDER_SUCCESS" });
             alert("Payment Successful, Your Order is Placed");
+            dispatch(startCreateCoupon(order._id))
         } catch (err) {
             dispatch({ type: "CREATE_ORDER_FAILURE" });
             console.log(err);

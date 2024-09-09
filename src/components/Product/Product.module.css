@@ -44,14 +44,15 @@
   }
   
   .addToCartButton {
-    background-color: #333;
+    background-color: #ded0b6;
     color: #fff;
     border: none;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    border-radius: 8px;
   }
   
   .addToCartButton:hover {
-    background-color: #444;
+    background-color: #c9bfbf;
   }

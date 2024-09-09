@@ -1,27 +1,113 @@
+/* Container for the entire page */
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+}
+
+/* NavBar at the top */
+.navBar {
+  width: 100%;
+  height: 50px; /* Adjust height as needed */
+  background-color: #bbab86; /* Matches your design */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* Main content container, holding sidebar and product grid */
+.mainContainer {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  padding-top: 50px; /* Ensure content is below the fixed NavBar */
+}
+
+/* Sidebar styles */
+.leftSideContainer {
+  width: 200px; /* Matches the width of your sidebar */
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Add space between the sidebar and the product grid */
+.rightSideContainer {
+  flex-grow: 1;
+  padding: 20px 20px 20px 30px; /* Add space on the left between the sidebar and products */
+  overflow-y: auto;
+  margin-left: 50px;
+}
+
+.head {
+  /* display: flex; */
+  align-items: center;
+  text-align: center;
+}
+
 .container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
-    margin-top: 150px;
     gap : 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    margin-top: -20px;
 }
 
 .emptyContainer {
-  width: 100%;
-  height: 10rem;
-  border: #666;
-}
-
-.cartContainer {
+    /* display: flex;
+    flex-direction: row; */
+    padding: 16px;
+    border: 1px solid #ddd;
+    width: 80%;
+    height: 150px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    border-radius: 20px;
+    border-radius: 10px;
+    margin-top: 50px;
 }
 
-.cartContainerNB {
-    border: none;
+.emptyCoupon {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  /* align-items: center; */
+}
+
+.emptyCartButton {
+  color: black;
+}
+
+.couponCard {
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  padding: 16px;
+  border: 1px solid #ddd;
+  width: 90%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  margin-left: 25px;
+  gap : 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.couponName {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.couponDetails {
+  font-size: 18px;
+  font-weight: bold;
+  /* margin-top: 10px; */
 }
 
 .cartCard {
@@ -30,6 +116,10 @@
     align-items: left;
     padding: 16px;
     border: 1px solid #ddd;
+    width: 80%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin-top: -10px;
   }
   
 .image {
@@ -37,19 +127,28 @@
     height: 250px;
     object-fit: cover;
     margin-right: 16px;
-    border-radius: 20px;
+    border: 1px solid #666;
+    border-radius: 10px;
   }
   
 .info {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin-left: 50px;
+    margin-top: 10px;
   }
   
 .name {
     font-weight: bold;
     margin-bottom: 8px;
   }
+
+.details {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
   
 .price {
     font-size: 18px;
@@ -60,7 +159,7 @@
 .qtyContainer {
     display: flex;
     align-items: center;
-    margin-top: 16px;
+    margin-top: 10px;
     margin-bottom: 16px;
   }
   
@@ -72,18 +171,32 @@
   }
 
 .qtyButton {
-    background-color:rgb(150, 150, 147);
-    width: 50px;
-    height: 40px;
+    background-color: #ded0b6;
+    width: 30px;
+    height: 30px;
     border: none;
     padding: 8px 16px;
     border-radius: 8px;
     cursor: pointer;
     color: black;
   }
+
+  .qtyButton:hover {
+    background-color: #c9bfbf;
+  }
+
+  .qtyButton:active {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(2px);
+  }
+
+.arrowButton {
+  margin-left: -7px;
+  margin-bottom: 10px;
+}
   
 .removeButton {
-    background-color:rgb(150, 150, 147);
+    background-color: #ded0b6;
     width: 120px;
     height: 40px;
     border: none;
@@ -91,11 +204,17 @@
     border-radius: 8px;
     cursor: pointer;
     color: black;
+    /* margin-bottom: 10px; */
   }
   
 .removeButton:hover {
     background-color: #c9bfbf;
   }
+
+.removeButton:active {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(2px);
+}
 
 .amountContainer {
     display: flex;
@@ -105,10 +224,12 @@
     border-radius: 20px;
     height: max-content;
     padding: 20px;
+    margin-left: -70px;
+    margin-top: 30px;
 }
 
 .button {
-    background-color:rgb(150, 150, 147);
+    background-color: #ded0b6;
     border: none;
     padding: 8px 16px;
     border-radius: 8px;
@@ -117,8 +238,13 @@
   }
   
 .button:hover {
-    background-color: #666;
+    background-color: #c9bfbf;
   }
+
+.button:active {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(2px);
+}
 
 .title {
     font-weight: bold;
@@ -130,4 +256,82 @@
     font-weight: bold;
     color: #666;
     margin-bottom: 10px;
+  }
+
+  @media (max-width: 768px) {
+    /* .leftSideContainer {
+      width: 150px;
+    } */
+  
+    .rightSideContainer {
+      padding-left: 10px;
+      margin-left: -20px;
+    }
+  
+    .cartCard {
+      width: 90%;
+      padding: 12px;
+    }
+  
+    .image {
+      width: 150px;
+      height: 200px;
+    }
+  
+    .info {
+      margin-left: 10px;
+    }
+  
+    .name, .details, .price {
+      font-size: 14px;
+    }
+  
+    .amountContainer {
+      display: flex;
+      align-items: center;
+      margin-left: 130px;
+      width: 50%;
+      /* margin-left: 5px; */
+      margin-top: 20px;
+      /* padding: 10px; */
+    }
+  }
+  
+  /* Media query for screens below 480px (mobile) */
+  @media (max-width: 480px) {
+    .leftSideContainer {
+      width: 100px;
+    }
+  
+    .rightSideContainer {
+      padding: 0;
+      margin-left: 0;
+    }
+  
+    .cartCard {
+      width: 100%;
+      padding: 8px;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .image {
+      width: 100px;
+      height: 140px;
+    }
+  
+    .info {
+      margin-left: 0;
+      align-items: center;
+    }
+  
+    .name, .details, .price {
+      font-size: 12px;
+    }
+  
+    .amountContainer {
+      width: 100%;
+      padding: 10px;
+      margin-left: 0;
+    }
   }

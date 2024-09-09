@@ -14,6 +14,7 @@ export default function NavBar() {
     const location = useLocation();
     const isCartPage = location.pathname === "/cart";
     const isOrderPage = location.pathname === "/orders"
+    const isProfilePage = location.pathname === "/customer-profile"
 
     const [modal, setModal] = useState(false)
     const toggle = () => setModal(!modal)
@@ -21,23 +22,36 @@ export default function NavBar() {
     return (
         <div>
             <Nav className={styles["nav-bar"]}>
-                <NavItem>
-                    <NavLink className={styles["nav-items"]} active href="/customer-container">Home</NavLink>
-                </NavItem>
+                {user ? (
+                    <NavItem>
+                        <NavLink className={styles["nav-items"]} active href="/customer-container">Home</NavLink>
+                    </NavItem>
+                ) : (
+                    <NavItem>
+                        <NavLink className={styles["nav-items"]} active href="/">Home</NavLink>
+                    </NavItem> 
+                )}
                 <Nav>
-                    {!isOrderPage && (
+                    {!isOrderPage && user && (
                         <NavItem>
                             <NavLink className={styles["nav-items"]} active href="/orders">Orders</NavLink>
                         </NavItem>
                     )}
-                    {!isCartPage && (
+                    {!isCartPage && user && (
                         <NavItem>
                             <NavLink className={styles["nav-items"]} href="/cart">Cart</NavLink>
                         </NavItem>
                     )}
-                    <NavItem>
-                        <NavLink className={styles["nav-items"]} style={{ cursor: "pointer" }} onClick={toggle}>Profile</NavLink>
-                    </NavItem>
+                    {!isProfilePage && user && (
+                        <NavItem>
+                            <NavLink className={styles["nav-items"]} style={{ cursor: "pointer" }} onClick={toggle}>Profile</NavLink>
+                        </NavItem>
+                    )}
+                    {!user && (
+                        <NavItem>
+                            <NavLink className={styles["nav-items"]} href="/login">Login</NavLink>
+                        </NavItem>
+                    )}
                 </Nav>
             </Nav>
             <Modal isOpen={modal} toggle={toggle}>
@@ -45,8 +59,8 @@ export default function NavBar() {
                 <ModalBody>
                     <Link className={styles["link-style"]} to="/customer-profile">Manage Profile</Link>
                     <div className="text-end">
-                        <p className={styles['logout-text']}>Logout</p>
-                        <Link className={styles["button"]} onClick={() => {
+                        <span className={styles['logout-text']}>Logout</span>
+                        <Link onClick={() => {
                             if (window.confirm("Are you sure to Logout")) {
                                 localStorage.removeItem("token")
                                 handleLogout()

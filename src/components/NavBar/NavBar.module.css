@@ -1,20 +1,27 @@
 .nav-bar {
-  background: #ad974f;
+  background: #bbab86;
   justify-content: space-between;
-  padding: 10px;
+  /* padding: 10px; */
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
+  /* color: #bbab8c; */
 }
 
 .nav-items {
   font-size: 1.2rem;
-  color: #eaeaea;
+  color: black;
   margin-right: 15px;
 }
 
-.logout-icon, .logout-text {
+.logout-text {
+  color: #ad974f;
+}
+
+.logout-icon {
+  font-size: 25px;
+  margin-left: 10px;
   color: #ad974f;
 }
 
@@ -23,4 +30,8 @@
   padding: 10px;
   border-radius: 40px;
   cursor: pointer;
+}
+
+.link-style {
+  color: #231f20;
 }

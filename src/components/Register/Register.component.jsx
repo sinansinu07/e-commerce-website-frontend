@@ -34,6 +34,8 @@ Array.prototype.findErrors = function(name) {
 export default function RegisterForm() {
 
     const navigate = useNavigate()
+
+    const [loading, setLoading] = useState()
     const [form, setForm] = useState({
         username : "",
         password : "",
@@ -81,6 +83,7 @@ export default function RegisterForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setLoading(true)
 
         // console.log(form)
 
@@ -121,6 +124,7 @@ export default function RegisterForm() {
             console.log(formErrors)
             setFormErrors(errors)
             setServerErrors("")
+            setLoading(false)
         }
     }
 
@@ -213,10 +217,14 @@ export default function RegisterForm() {
                     {/* <div className="remember-forgot">
                         <label><input type="checkbox"/>Remember me</label>
                     </div> */}
-                    <input className={styles["input-button"]} type="submit" value="Register" />
+                    <input
+                        className={styles["input-button"]}
+                        type="submit"
+                        value={loading ? "Registering..." :"Register"}
+                    />
                     <div className={styles["register-link"]}>
                         <label>Already have an account? Click here to </label>
-                        <Link className={styles["link-style"]} to="/"><p>Login</p></Link>
+                        <Link className={styles["link-style"]} to="/login"><p>Login</p></Link>
                     </div>
                 </form>
                 

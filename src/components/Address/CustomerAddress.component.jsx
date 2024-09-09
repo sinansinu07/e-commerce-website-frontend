@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { MdAdd } from "react-icons/md";
 import NavBar from "../NavBar/NavBar.component";
 import styles from './CustomerAddress.module.css';  // Import CSS module
+import SideBar from "../SideBar/SideBar.component";
 
 export default function CustomerAddresses() {
     const { user } = useAuth();
@@ -38,45 +39,53 @@ export default function CustomerAddresses() {
     };
 
     return (
-        <div className={styles.container}>
+        <div className={styles.pageContainer}>
             <NavBar />
-            <div className={styles.content}>
-                <h2>Your Addresses</h2>
-                {addresses.data.length === 0 ? (
-                    <div className={styles.noAddress}>
-                        <h4>No Addresses. Add your first address.</h4>
-                        <Link className={styles.addButton} onClick={toggle1}>
-                            <div className={styles.addCard}>
-                                <MdAdd className={styles.addIcon} />
-                                <span>Add Address</span>
-                            </div>
-                        </Link>
-                    </div>
-                ) : (
-                    <div className={styles.addressGrid}>
-                        <Link className={styles.addButton} onClick={toggle1}>
-                            <div className={styles.addCard}>
-                                <MdAdd className={styles.addIcon} />
-                                <span>Add Address</span>
-                            </div>
-                        </Link>
-                        {addresses.data.map((ele) => (
-                            <div className={styles.card} key={ele._id}>
-                                <div className={styles.cardBody}>
-                                    <h5>{ele.name}</h5>
-                                    <p>{ele.addressNo}, {ele.street}, {ele.city}, {ele.state}, {ele.pincode}</p>
-                                    <div className={styles.buttons}>
-                                        <Link onClick={() => { setEditId(ele._id); toggle2(); }}>Edit</Link> |
-                                        <Link onClick={() => handleDelete(ele._id)}>Delete</Link>
-                                        {!ele.isDefault && (
-                                            <Link onClick={() => handleSetDefault(ele._id)}>Set as Default</Link>
-                                        )}
+            <SideBar />
+            <div className={styles.mainContainer}>
+                <div className={styles.leftSideContainer}>
+                    <SideBar/>
+                </div>
+                <div className={styles.rightSideContainer}>
+                    <div className={styles.content}>
+                    <h2 className={styles.head}>Your Address</h2>
+                        {addresses.data.length === 0 ? (
+                            <div className={styles.noAddress}>
+                                <h4>No Addresses. Add your first address.</h4>
+                                <Link className={styles.addButton} onClick={toggle1}>
+                                    <div className={styles.addCard}>
+                                        <MdAdd className={styles.addIcon} />
+                                        <span>Add Address</span>
                                     </div>
-                                </div>
+                                </Link>
                             </div>
-                        ))}
+                        ) : (
+                            <div className={styles.addressGrid}>
+                                <Link className={styles.addButton} onClick={toggle1}>
+                                    <div className={styles.addCard}>
+                                        <MdAdd className={styles.addIcon} />
+                                        <span>Add Address</span>
+                                    </div>
+                                </Link>
+                                {addresses.data.map((ele) => (
+                                    <div className={styles.card} key={ele._id}>
+                                        <div className={styles.cardBody}>
+                                            <h5>{ele.name}</h5>
+                                            <p>{ele.addressNo}, {ele.street}, {ele.city}, {ele.state}, {ele.pincode}</p>
+                                            <div className={styles.buttons}>
+                                                <Link onClick={() => { setEditId(ele._id); toggle2(); }}>Edit</Link> |
+                                                <Link onClick={() => handleDelete(ele._id)}>Delete</Link>
+                                                {!ele.isDefault && (
+                                                    <Link onClick={() => handleSetDefault(ele._id)}>Set as Default</Link>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
-                )}
+                </div>
             </div>
             <Modal isOpen={modal1} toggle={toggle1}>
                 <ModalHeader toggle={toggle1}>Add Address</ModalHeader>

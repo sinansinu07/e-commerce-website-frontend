@@ -4,23 +4,31 @@ import { useAuth } from '../../context/AuthContext';
 // import { startCreateCart } from '../../../actions/cartAction'
 import { useDispatch } from 'react-redux';
 import { startCreateCart } from '../../actions/cartAction';
+import { useNavigate } from 'react-router';
 export default function Product({ product }) {
 
     const {user}= useAuth()
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const handleAddToCart = async (product) => {
-        const cart = {
-            lineItems : [
-                {
-                    product: product._id,
-                    quantity: 1,
-                    price: product.price
-                }
-            ]
+        if(user) {
+            const cart = {
+                lineItems : [
+                    {
+                        product: product._id,
+                        quantity: 1,
+                        price: product.price
+                    }
+                ]
+            }
+            dispatch(startCreateCart(cart))
+            navigate("/customer-container")
+        } else {
+            alert("Please Logon to Add product too Cart")
+            navigate("/Login")
         }
-        dispatch(startCreateCart(cart))
-        console.log(cart)
+
     }
     return (
         <div className={styles.productCard}>
