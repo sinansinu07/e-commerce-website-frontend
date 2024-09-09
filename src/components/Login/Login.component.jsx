@@ -70,6 +70,7 @@ export default function LoginForm() {
                 // alert(err.message)
                 setServerErrors(err.response.data.error)
                 // console.log(err.response.data.error)
+                setLoading(false)
                 
                 setFormErrors("")
             }
