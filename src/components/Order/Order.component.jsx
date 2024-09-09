@@ -71,12 +71,16 @@ export default function Orders() {
                         }`}
                         >
                         {ele.lineItems.map((lineItem) => (
-                            <div key={lineItem.product._id}>
-                            <img
-                                src={lineItem.product.productImage.image_url}
-                                alt={lineItem.product.productName}
-                                className={styles.image}
-                            />
+                            <div>
+                            {lineItem && lineItem.product && (
+                                <div key={lineItem.product._id}>
+                                    <img
+                                        src={lineItem.product.productImage.image_url}
+                                        alt={lineItem.product.productName}
+                                        className={styles.image}
+                                    />
+                                </div>
+                            )}
                             </div>
                         ))}
                         </div>

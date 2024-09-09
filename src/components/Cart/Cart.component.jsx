@@ -104,22 +104,22 @@ export default function Cart() {
                             )}
                                 {cart?.lineItems?.length > 0 ? (
                                     cart.lineItems.map((lineItem) => (
-                                        <div key={lineItem.product._id} className={styles.cartCard}>
-                                            <img src={lineItem.product.productImage.image_url} alt={lineItem.product.productName} className={styles.image} />
+                                        <div key={lineItem?.product?._id} className={styles.cartCard}>
+                                            <img src={lineItem.product?.productImage?.image_url} alt={lineItem?.product?.productName} className={styles.image} />
                                             <div className={styles.info}>
-                                                <h4 className={styles.name}>{lineItem.product.productName}</h4>
-                                                <p className={styles.details}>color : {lineItem.product.color} | Size : {lineItem.product.size}</p>
+                                                <h4 className={styles.name}>{lineItem.product?.productName}</h4>
+                                                <p className={styles.details}>color : {lineItem.product?.color} | Size : {lineItem.product?.size}</p>
                                                 <p className={styles.price}>${lineItem.price}</p>
                                                 <div className={styles.qtyContainer}>
-                                                    <button className={styles.qtyButton} onClick={() => handleDecQty(lineItem.product._id)} disabled={lineItem.quantity === 1}>
+                                                    <button className={styles.qtyButton} onClick={() => handleDecQty(lineItem.product._id)} disabled={lineItem?.quantity === 1}>
                                                         <IoIosArrowDown className={styles.arrowButton}/>
                                                     </button>
-                                                    <span className={styles.qty}>{lineItem.quantity}</span>
-                                                    <button className={styles.qtyButton} onClick={() => handleIncQty(lineItem.product._id)}>
+                                                    <span className={styles.qty}>{lineItem?.quantity}</span>
+                                                    <button className={styles.qtyButton} onClick={() => handleIncQty(lineItem.product?._id)}>
                                                         <IoIosArrowUp className={styles.arrowButton}/>
                                                     </button>
                                                 </div>
-                                                <button className={styles.removeButton} onClick={() => handleDelete(lineItem.product._id)}>
+                                                <button className={styles.removeButton} onClick={() => handleDelete(lineItem.product?._id)}>
                                                     Remove
                                                 </button>
                                             </div>
